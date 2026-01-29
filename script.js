@@ -1,39 +1,35 @@
-let allProducts = [];
+const container = document.getElementById('productContainer');
 
-fetch("https://dummyjson.com/products")
-    .then(response => response.json())
-    .then(data => {
-        allProducts = data.products;
-        displayProducts(allProducts);
-    })
-    .catch(error => {
-        console.log("Error:", error);
-    });
-
-function displayProducts(products) {
-    const container = document.getElementById("productContainer");
-    container.innerHTML = "";
+fetch('https://dummyjson.com/products')
+  .then(res => res.json())
+  .then(data => {
+    const products = data.products;
 
     products.forEach(product => {
-        const card = document.createElement("div");
-        card.className = "product-card";
+      const card = document.createElement('div');
+      card.className = 'product-card';
 
-        card.innerHTML = `
+      card.innerHTML = `
             <img src="${product.thumbnail}" alt="${product.title}">
             <h3>${product.title}</h3>
-            <p>₹ ${product.price}</p>
-        `;
+            <p class="price">₹ ${product.price}</p>
+          `;
 
-        container.appendChild(card);
+      container.appendChild(card);
     });
-}
+  })
+  .catch(err => console.log(err));
 
-function searchProduct() {
-    const searchValue = document.getElementById("searchInput").value.toLowerCase();
 
-    const filteredProducts = allProducts.filter(product =>
-        product.title.toLowerCase().includes(searchValue)
-    );
+/////////////////////////////////////////////////////////////Search feature//////////////////////////////////////////
+const btn = document.getElementById('btn');
+const searchInput = document.getElementById('searchInput');
 
-    displayProducts(filteredProducts);
-}
+btn.addEventListener('click', () => {
+  const query = searchInput.value.trim();
+  if (!query) return;
+
+  //redirect with query params
+  window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+  searchInput.value = '';
+});
