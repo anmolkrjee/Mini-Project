@@ -20,10 +20,9 @@ fetch('https://dummyjson.com/products')
   })
   .catch(err => console.log(err));
 
-  
 
+//Suggesstions 
 
-/////////////////////////////////////////////////////////////Search feature//////////////////////////////////////////
 const btn = document.getElementById('btn');
 const searchInput = document.getElementById('searchInput');
 const suggestionBox = document.getElementById("suggesstions");
@@ -56,6 +55,10 @@ matches.forEach(item => {
   suggestionBox.appendChild(div);
 });
 });
+  
+
+
+/////////////////////////////////////////////////////////////Search feature//////////////////////////////////////////
 
 btn.addEventListener('click', () => {
 
@@ -79,3 +82,11 @@ btn.addEventListener('click', () => {
   window.location.href = `search.html?q=${encodeURIComponent(query)}`;
   searchInput.value = '';
 });
+
+
+
+
+function openHistory() {
+    window.location.href = "history.html";
+}
+
