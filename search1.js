@@ -39,5 +39,12 @@ function displayProducts(productsList) {
       <p class="price">$ ${product.price}</p>
     `;
     container.appendChild(card);
+
+    //
+
+    card.addEventListener("click", () => {
+    window.location.href = `product.html?id=${product.id}`;
+});
+
   });
 }
