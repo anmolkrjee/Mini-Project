@@ -12,6 +12,7 @@ if (!productId) {
         .then(res => res.json())
         .then(product => {
             displayProduct(product);
+            saveRecentlyViewed(product); 
         })
         .catch(err => {
             container.innerHTML = "<p>Error loading product.</p>";
@@ -52,4 +53,31 @@ function displayProduct(product) {
             </div>
         </div>
     `;
+}
+
+
+
+//view
+
+function saveRecentlyViewed(product) {
+    let recent = JSON.parse(localStorage.getItem("recentProducts")) || [];
+
+    // Remove if already exists
+    recent = recent.filter(item => item.id !== product.id);
+
+    // Add to beginning
+    recent.unshift({
+        id: product.id,
+        title: product.title,
+        thumbnail: product.thumbnail,
+        price: product.price,
+        time: Date.now()
+    });
+
+    // Limit to last 5 products
+    if (recent.length > 5) {
+        recent = recent.slice(0, 5);
+    }
+
+    localStorage.setItem("recentProducts", JSON.stringify(recent));
 }
