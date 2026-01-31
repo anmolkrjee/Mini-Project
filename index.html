@@ -5,22 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini Project</title>
     <link href="style.css" rel ="stylesheet">
-    <script src="script.js" defer></script>
+    <link href="./pagination/pagination.css" rel ="stylesheet">
 </head>
 <body>
     <!-- api = https://dummyjson.com/products -->
     <h1>Product Store</h1>
+
     <div class="search-box">
         <input type="text" id="searchInput" placeholder="Search Your Product Here">
         <button id="btn" onclick="searchProduct()">Search</button>
 
         <div id="suggesstions"></div>
     </div>
+
     <div class="history-view" onclick="openHistory()">
     View Search History
 </div>
-    <div id="productContainer" class="product-container">
+<div class="history-view" onclick="window.location.href='viewhistory.html'">
+    Recently Viewed Products
+</div>
+    <div id="productList" class="product-container"></div>
+    <div class="pagination-wrapper">
+        <button id="prevBtn">Previous</button>
+        <span id="pageInfo"></span>
+        <button id="nextBtn">Next</button>
     </div>
+</div>
+
+
 </body>
+
+<script src="script.js"></script>
+<!-- <script src="pagination.js"></script> -->
+
 </html>
+
 
